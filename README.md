@@ -49,6 +49,6 @@ $ php bin/console doctrine:schema:update –force to update
 ```
 
 ```
-php bin/console server:run
+$ php bin/console server:run
 ```
 
