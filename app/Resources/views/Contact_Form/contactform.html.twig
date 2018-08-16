@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block title %}Symfony Secure Form with Google ReCaptcha {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href='{{ asset('css/style.css') }}'>
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600,700" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="header1">
+                        <strong>Contact us..</strong><br> <small class="pull-right">Request a call back</small></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form Container -->
+    <div class="container container_1">
+        <div class="row">
+            <div class="col-md-8">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-md-6 form-group-container">
+                                <!-- FirstName -->
+                                <div class="form-group">
+                                    {{ form_label(form.firstName) }}
+                                    {% if form_errors(form.firstName)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.firstName)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.firstName,{'attr': {'class': 'form-control','placeholder':'Enter your First Name'}}) }}
+                                </div>
+                                <!-- LastName-->
+                                <div class="form-group">
+                                    {{ form_label(form.lastName) }}
+                                    {% if form_errors(form.lastName)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.lastName)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.lastName,{'attr': {'class': 'form-control','placeholder':'Enter your Last Name'}}) }}
+                                </div>
+                                <!-- PhoneNumber -->
+                                <div class="form-group">
+                                    {{ form_label(form.phoneNumber) }}
+                                    {% if form_errors(form.phoneNumber)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.phoneNumber)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.phoneNumber,{'attr': {'class': 'form-control','placeholder':'Enter your Phone Number'}}) }}
+                                </div>
+                                <!-- Email -->
+                                <div class="form-group">
+                                    {{ form_label(form.email) }}
+                                    {% if form_errors(form.email)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.email)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.email,{'attr': {'class': 'form-control','placeholder':'Enter your Email'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form_label(form.subject) }}
+                                    {% if form_errors(form.subject)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.subject)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.subject,{'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <!-- Message -->
+                                <div class="form-group">
+                                    {{ form_label(form.message) }}
+                                    {% if form_errors(form.message)|length > 0 %}
+                                        <div class="alert alert-danger">
+                                            {{ form_errors(form.message)|striptags }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.message,{'attr': {'class': 'form-control message','rows' : '8'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                {% if form_errors(form)|length > 0 %}
+                                    <div class="alert alert-danger">
+                                        {{ form_errors(form)|striptags }}
+                                    </div>
+                                {% endif %}
+                                <!-- Update your Recapcha public key here -->
+                                <div class="g-recaptcha" data-sitekey="YourRecapchaPublicKey"></div>
+                                <!-- Submit -->
+                                <input type="submit" class="btn btn-primary pull-right" value="Send Message"/>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+            </div>
+
+            <div class="col-md-4">
+                <hr class="d-md-none"/>
+                    <legend><i class="fas fa-building"></i> Office</legend>
+                    <address>
+                        <strong>Xyz, Inc.</strong><br>
+                        123 Abc Ave, Suite 456<br>
+                        Toronto,ON 68910<br>
+                        <abbr title="Phone">P:</abbr>
+                        (123) 456-7890
+                    </address>
+                    <address>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:#">first.last@example.com</a>
+                    </address>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Google Recapcha api -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
